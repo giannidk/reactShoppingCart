@@ -21,8 +21,8 @@ class App extends Component {
       <Topnav />
           <Switch>
             <Route path="/dashboard" component={Dashboard} />
-            <Route path="/login" component={Login} />
             <Route path="/settings" component={Settings} />
+            <Route path="/login" component={Login} />
             <Route path="/" component={Login} />
           </Switch>
         </Grid>

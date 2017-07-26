@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { 
   Navbar, 
-  Nav, 
-  NavItem,
+  Nav,
  } from 'react-bootstrap';
+import { NavItemLink } from './'
 
 class Topnav extends Component{  
   
@@ -13,28 +13,17 @@ class Topnav extends Component{
             <Navbar inverse collapseOnSelect fixedTop>
               <Navbar.Header>
                 <Navbar.Brand>
-                  <a href="/">React Auth</a>
+                  <LinkContainer to="/dashboard"><a>React Auth</a></LinkContainer>
                 </Navbar.Brand>
                 <Navbar.Toggle />
               </Navbar.Header>
               <Navbar.Collapse>
                 <Nav>
-                   <LinkContainer to="/login">
-                    <NavItem>Login</NavItem>
-                  </LinkContainer>
-                  <LinkContainer to="/dashboard">
-                    <NavItem>Dashboard</NavItem>
-                  </LinkContainer>
-                  
-                 
-                  
-                  
-                  
+                  <NavItemLink to="/login" label="Login" />  
+                  <NavItemLink to="/dashboard" label="Dashboard" />                 
                 </Nav>
-                <Nav pullRight>
-                  <LinkContainer to="/setting">
-                    <NavItem>Settings</NavItem>
-                  </LinkContainer>
+                <Nav pullRight>                  
+                  <NavItemLink to="/settings" label="Settings" />
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
