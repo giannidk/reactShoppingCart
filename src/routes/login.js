@@ -1,14 +1,16 @@
 //import firebase from 'firebase';
 import React, { Component } from 'react';
+import { Route, Redirect } from 'react-router-dom';
 import { Panel, Alert } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 
 class UserLogin extends Component {   
-    componentWillMount(){
-        console.log(this.props);
-    }
+state = {
+    redirectToReferrer: false
+  }
+    
 
 onEmailChange(text) {
     this.props.emailChanged(text.target.value);
@@ -19,11 +21,8 @@ onPasswordChange(text) {
 
 
 onSubmit() {
-    /* this.props.loginUser({ userEmail, userPassword }, () => {
-      this.props.history.push('/dashboard');
-    }); */
     const { email, password } = this.props;
-    this.props.loginUser({email, password});
+    this.props.loginUser({email, password}, this.setState({ redirectToReferrer: true }));
 }
 
 
@@ -60,6 +59,20 @@ renderField(field) {
 }
   render() {
     const { handleSubmit, userEmail, userPassword  } = this.props;
+    const { from } = this.props.location.state || { from: { pathname: '/' } }
+    const { redirectToReferrer } = this.state
+
+    console.log(from);
+    console.log(redirectToReferrer);
+    
+    if (redirectToReferrer) {
+      return (
+        <Redirect to={from}/>
+      )
+    } 
+
+
+
     //const { currentUser } = firebase.auth();
     return (
       <div className="loginOuterContainer">
