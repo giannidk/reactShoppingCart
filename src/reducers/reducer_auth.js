@@ -34,7 +34,7 @@ export default (state = INITIAL_STATE, action) => {
     case LOGOUT_USER:
       return { ...state, ...INITIAL_STATE };
     case SET_LOGGED_USER:
-      return { ...state, ...INITIAL_STATE, loggedIn: true };
+      return { ...state, loggedIn: true };
     default:
       return state;
   }

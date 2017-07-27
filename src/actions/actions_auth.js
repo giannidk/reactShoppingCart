@@ -11,7 +11,8 @@ import {
 } from './types';
 
 
-export function getLoggedInState() {
+export function setLoggedInState() {
+  console.log('SETTING!!!!!!');
   return (dispatch) => {
     dispatch(
       { type: SET_LOGGED_USER }
