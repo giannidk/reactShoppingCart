@@ -6,8 +6,18 @@ import {
     LOGIN_USER,
     LOGIN_USER_SUCCESS,
     LOGIN_USER_FAIL,
-    LOGOUT_USER
+    LOGOUT_USER,
+    SET_LOGGED_USER
 } from './types';
+
+
+export function getLoggedInState() {
+  return (dispatch) => {
+    dispatch(
+      { type: SET_LOGGED_USER }
+    );
+  }
+}
 
 
 export const emailChanged = (text) => {
@@ -24,13 +34,58 @@ export const passwordChanged = (text) => {
     };
 };
 
-export const loginUser = ({email, password}) => {
-    console.log(email, password);
-    return {
-        type: 'CICCIO'
-    }
+
+
+export const loginUser = ({ email, password }, callback ) => {
+  console.log(email, password)
+  return(dispatch) => {
+    dispatch({ type: LOGIN_USER });
+    auth.signInWithEmailAndPassword(email, password)
+    .then(
+      user => { 
+        dispatch({
+          type: LOGIN_USER_SUCCESS,
+          payload: user
+        });
+        callback();
+      },
+      error => { 
+        console.log( error.message );        
+        dispatch({ 
+          type: LOGIN_USER_FAIL,
+          error: error.message 
+        });
+      }
+    )
+  }
 }
 
+export const logoutUser = () => {
+    return (dispatch) => {
+      auth.signOut();
+        dispatch({
+            type: LOGOUT_USER,
+            payload: {}        
+        });
+    };
+};
+
+/* const loginUserSuccess = (dispatch, user) => {   
+  console.log(user); 
+    dispatch({
+        type: LOGIN_USER_SUCCESS,
+        payload: user
+    });
+}; */
+
+/* const loginUserFail = (dispatch, error) => {
+    //dispatch(reset('loginForm', 'userEmail'), { 
+    //dispatch(change('loginForm', 'userPassword', ''), { 
+    dispatch({ 
+        type: LOGIN_USER_FAIL,
+        error: error 
+    });
+}; */
 
 
 /* 
@@ -58,45 +113,11 @@ export const loginUser = ({ userEmail, userPassword }, callback) => {
 }
 
 
-export const logoutUser = () => {
-    return (dispatch) => {
-      auth.signOut();
-        dispatch({
-            type: LOGOUT_USER,
-            payload: {}        
-        });
-    };
-};
 
 
 
 
-const loginUserSuccess = (dispatch, user) => {   
-  console.log(user); 
-    dispatch({
-        type: LOGIN_USER_SUCCESS,
-        payload: user
-    });
-};
 
-const loginUserFail = (dispatch, error) => {
-    //dispatch(reset('loginForm', 'userEmail'), { 
-    //dispatch(change('loginForm', 'userPassword', ''), { 
-    dispatch({ 
-        type: LOGIN_USER_FAIL,
-        error: error 
-    });
-};
-
-
-const redirectFunction = (callback) => {
-  auth.onAuthStateChanged( user => {
-        if (user) {
-          return (callback('/dashboard'));
-        }
-          return callback('/');
-      });
-}
 
 
 /* 
