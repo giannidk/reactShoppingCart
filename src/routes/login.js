@@ -7,7 +7,13 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 
+import { auth } from '../firebase';
+
 class UserLogin extends Component {
+
+  componentWillMount(){
+  }
+
   state = {
     redirectToReferrer: false
   }
@@ -63,6 +69,8 @@ class UserLogin extends Component {
     const { from } = this.props.location.state || { from: { pathname: '/' } }
     const { redirectToReferrer } = this.state
 
+    const { currentUser } = auth;
+
     //console.log(from);
     //console.log(redirectToReferrer);
 
@@ -79,6 +87,7 @@ class UserLogin extends Component {
       <div className="loginOuterContainer">
         <div className="loginInnerContainer col-xs-12 col-sm-8 col-md-6 col-lg-4">
           <h3>Login</h3>
+          <h5>---</h5>
           <Panel>
             {this.renderErrorAlert()}
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
@@ -128,6 +137,7 @@ function validate(values) {
 }
 
 const mapStateToProps = ({ auth }) => {
+  //console.log(auth);
   const { email, password, error, loading } = auth;
   return { email, password, error, loading };
 };

@@ -17,12 +17,11 @@ import { setLoggedInState } from './actions';
 
 class App extends Component {
     componentWillMount(){
-      console.log('USER: ', auth.currentUser)
      auth.onAuthStateChanged((user) => {
       if(user){
         //this.setState({ loggedIn: true });
-        this.props.setLoggedInState()
-        console.log(user);
+        //this.props.setLoggedInState(user)
+        //console.log(user);
       }
       else{
         console.log('NO USER');
@@ -35,14 +34,13 @@ class App extends Component {
   
   render() {
     const { store, loggedIn } = this.props;
-    console.log(loggedIn);
     return (
       <Provider store={store}>
       <BrowserRouter>
         <Grid>
       <Topnav />
            <Switch>
-              <PrivateRoute path="/dashboard" loggedIn={loggedIn} component={Dashboard} />
+              <PrivateRoute path="/dashboard" component={Dashboard} />
               <Route path="/settings" component={Settings} />
               <Route path="/login" component={Login} />
               <Route path="/" component={Login} />
@@ -55,7 +53,7 @@ class App extends Component {
 }
 
 function mapStateToProps({ auth }){
-  console.log(auth.loggedIn);
+  //console.log(auth.loggedIn);
   return {
     loggedIn: auth.loggedIn
   }

@@ -5,16 +5,15 @@ import { auth } from '../firebase';
 
 class PrivateRoute extends Component {
 
-
   render() {
-    const { loggedIn } = this.props;
-    console.log(loggedIn);
+    const { loggedIn, loading, user } = this.props;
+    console.log(loggedIn, user);
 
+    if (loading) {
+      return (<div>Loading...</div>);
+    }
 
-    
-
-
-    if (loggedIn !== true) {
+    if (!loggedIn) {
       return (
         <Redirect to={{
           pathname: '/login',
@@ -26,15 +25,13 @@ class PrivateRoute extends Component {
       <Route {...this.props} />
     )
   }
-
-
 }
 
-
-
-function mapStateToProps({auth}){
-    return {
-        loggedIn: auth.loggedIn
-    }
+function mapStateToProps({ auth }) {
+  return {
+    loggedIn: auth.loggedIn,
+    loading: auth.loading,
+    user: auth.user
+  }
 }
-export default connect()(PrivateRoute);
+export default connect(mapStateToProps)(PrivateRoute);

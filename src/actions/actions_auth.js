@@ -11,11 +11,13 @@ import {
 } from './types';
 
 
-export function setLoggedInState() {
+export function setLoggedInState(user) {
   console.log('SETTING!!!!!!');
   return (dispatch) => {
     dispatch(
-      { type: SET_LOGGED_USER }
+      { type: SET_LOGGED_USER,
+        payload: user
+      }
     );
   }
 }
