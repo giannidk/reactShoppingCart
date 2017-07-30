@@ -9,7 +9,7 @@ class Dashboard extends Component {
   }
 
   onLogoutClick() {
-    this.props.logoutUser();
+    this.props.logoutUser(() => { this.props.history.push('/login') } );
   }
 
 

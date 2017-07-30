@@ -1,4 +1,3 @@
-import { auth } from '../firebase';
 import {
   EMAIL_CHANGED,
   PASSWORD_CHANGED,
@@ -15,7 +14,7 @@ const INITIAL_STATE = {
   password: '',
   error: '',
   loading: false,
-  loggedIn: null
+  loggedIn: false
 };
 
 
@@ -30,7 +29,7 @@ export default (state = INITIAL_STATE, action) => {
     case LOGIN_USER_SUCCESS:
       return { ...state, ...INITIAL_STATE, user: action.payload, loggedIn: true };
     case LOGIN_USER_FAIL:
-      return { ...state, error: action.error };
+      return { ...state, ...INITIAL_STATE, error: action.error };
     case LOGOUT_USER:
       return { ...state, ...INITIAL_STATE };
     case SET_LOGGED_USER:

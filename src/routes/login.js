@@ -7,7 +7,7 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 
-import { auth } from '../firebase';
+//import { auth } from '../firebase';
 
 class UserLogin extends Component {
 
@@ -27,8 +27,11 @@ class UserLogin extends Component {
 
   onSubmit() {
     const { email, password } = this.props;
+    //const from = this.props.location.state ? this.props.location.state.from.pathname : '/settings';
+    //console.log(from);
     this.props.loginUser({ email, password },
-      () => this.setState({ redirectToReferrer: true })
+      //() => {this.props.history.push('/dashboard');} 
+      () => {this.setState({ redirectToReferrer: true })} 
       );
   }
 
@@ -66,12 +69,12 @@ class UserLogin extends Component {
   }
   render() {
     const { handleSubmit, userEmail, userPassword } = this.props;
-    const { from } = this.props.location.state || { from: { pathname: '/' } }
+    const { from } = this.props.location.state || { from: { pathname: '/login' } }
     const { redirectToReferrer } = this.state
 
-    const { currentUser } = auth;
+    //const { currentUser } = auth;
 
-    //console.log(from);
+    //console.log('FROM: ', from);
     //console.log(redirectToReferrer);
 
     if (redirectToReferrer) {

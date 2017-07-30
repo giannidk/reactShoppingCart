@@ -12,7 +12,6 @@ import {
 
 
 export function setLoggedInState(user) {
-  console.log('SETTING!!!!!!');
   return (dispatch) => {
     dispatch(
       { type: SET_LOGGED_USER,
@@ -63,13 +62,15 @@ export const loginUser = ({ email, password }, callback ) => {
   }
 }
 
-export const logoutUser = () => {
+export const logoutUser = (callback) => {
+  console.log('LOGOUT FROM ACTION');
     return (dispatch) => {
       auth.signOut();
         dispatch({
             type: LOGOUT_USER,
             payload: {}        
         });
+          callback();
     };
 };
 
