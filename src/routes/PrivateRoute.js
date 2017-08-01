@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 import { Spinner } from '../components/common';
 
 class PrivateRoute extends Component {
+  componentWillMount(){
+    //alert('Receiving...');
+  }
 
   render() {
     const { loggedIn, user } = this.props;
@@ -12,7 +15,7 @@ class PrivateRoute extends Component {
     console.log(typeof loggedIn);
 
 
-      if (!loggedIn) {
+    if (!loggedIn) {
       return (<Spinner />);
     }  
 

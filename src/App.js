@@ -21,14 +21,11 @@ class App extends Component {
     componentWillMount(){
      auth.onAuthStateChanged((user) => {
       if(user){
-          //this.setState({ loggedIn: true });
           this.props.setLoggedInState(user)
         console.log(user);
       }
       else{
         console.log('NO USER');
-        //this.setState({ loggedIn: false });
-
       }
     }) 
   }   
@@ -37,7 +34,6 @@ class App extends Component {
   
   render() {
     const { store } = this.props;
-    //const { loggedIn } = this.state;
     return (
       <Provider store={store}>
       <BrowserRouter>

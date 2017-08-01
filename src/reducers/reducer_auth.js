@@ -14,7 +14,8 @@ const INITIAL_STATE = {
   password: '',
   error: '',
   loading: false,
-  loggedIn: false
+  loggedIn: false,
+  user: {}
 };
 
 
