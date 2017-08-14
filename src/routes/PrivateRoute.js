@@ -1,35 +1,36 @@
 import React, { Component } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-//import { auth } from '../firebase';
 import { Spinner } from '../components/common';
 import { getLoggedInState } from '../actions';
 class PrivateRoute extends Component {
-  componentWillMount(){
-    //alert('Receiving...');
+  componentWillMount() {
     this.props.getLoggedInState();
   }
 
   render() {
     const { loading, loggedIn } = this.props;
 
+    // Display a spinner while data is loading 
+    // This prevets also an unwanted redirect before data about user login status is received
     if (loading) {
       return (<Spinner />);
     }
 
+    // Redirect if user is not logged in
     if (loggedIn === false) {
       return (
-      <Redirect to={{
-        pathname: '/login',
-        state: { from: this.props.location }
-      }} />
-    )
-    }
-    
-return (
-        <Route {...this.props} />
+        <Redirect to={{
+          pathname: '/login',
+          state: { from: this.props.location }
+        }} />
       )
-    
+    }
+
+    // Display component if user is logged in
+    return (
+      <Route {...this.props} />
+    )
   }
 }
 
