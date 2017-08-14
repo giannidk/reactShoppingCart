@@ -3,42 +3,38 @@ import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 //import { auth } from '../firebase';
 import { Spinner } from '../components/common';
-
+import { getLoggedInState } from '../actions';
 class PrivateRoute extends Component {
   componentWillMount(){
     //alert('Receiving...');
+    this.props.getLoggedInState();
   }
 
   render() {
-    const { loggedIn, user } = this.props;
-    console.log(loggedIn, user);
-    console.log(typeof loggedIn);
+    const { loading, loggedIn } = this.props;
 
-
-    if (!loggedIn) {
+    if (loading) {
       return (<Spinner />);
-    }  
+    }
 
     if (loggedIn === false) {
-
       return (
-        <Redirect to={{
-          pathname: '/login',
-          state: { from: this.props.location }
-        }} />
-      )
-    }
-    return (
-      <Route {...this.props} />
+      <Redirect to={{
+        pathname: '/login',
+        state: { from: this.props.location }
+      }} />
     )
+    }
+    
+return (
+        <Route {...this.props} />
+      )
+    
   }
 }
 
 function mapStateToProps({ auth }) {
-  return {
-    loggedIn: auth.loggedIn,
-    loading: auth.loading,
-    user: auth.user
-  }
+  const { loading, loggedIn } = auth;
+  return { loading, loggedIn }
 }
-export default connect(mapStateToProps)(PrivateRoute);
+export default connect(mapStateToProps, { getLoggedInState })(PrivateRoute);

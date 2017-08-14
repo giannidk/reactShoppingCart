@@ -7,11 +7,12 @@ import {
     LOGIN_USER_SUCCESS,
     LOGIN_USER_FAIL,
     LOGOUT_USER,
-    SET_LOGGED_USER
+    SET_LOGGED_USER,
+    GET_LOGIN_STATE
 } from './types';
 
 
-export function setLoggedInState(user) {
+export const setLoggedInState = (user) => {
   return (dispatch) => {
     dispatch(
       { type: SET_LOGGED_USER,
@@ -20,6 +21,31 @@ export function setLoggedInState(user) {
     );
   }
 }
+
+export const getLoggedInState = () => {
+  return (dispatch) => {
+    dispatch({ type: GET_LOGIN_STATE });
+    auth.onAuthStateChanged((user) => {
+      if(user){
+        dispatch(
+          { type: SET_LOGGED_USER,
+            payload: user
+          }
+        );
+      }
+      else{
+        console.log('NO USER');
+        dispatch({
+            type: LOGOUT_USER      
+        });
+      } 
+       
+  });
+}
+}
+
+
+
 
 
 export const emailChanged = (text) => {
@@ -67,85 +93,8 @@ export const logoutUser = (callback) => {
     return (dispatch) => {
       auth.signOut();
         dispatch({
-            type: LOGOUT_USER,
-            payload: {}        
+            type: LOGOUT_USER      
         });
           callback();
     };
 };
-
-/* const loginUserSuccess = (dispatch, user) => {   
-  console.log(user); 
-    dispatch({
-        type: LOGIN_USER_SUCCESS,
-        payload: user
-    });
-}; */
-
-/* const loginUserFail = (dispatch, error) => {
-    //dispatch(reset('loginForm', 'userEmail'), { 
-    //dispatch(change('loginForm', 'userPassword', ''), { 
-    dispatch({ 
-        type: LOGIN_USER_FAIL,
-        error: error 
-    });
-}; */
-
-
-/* 
-
-
-
-
-
-export const loginUser = ({ userEmail, userPassword }, callback) => {
-  return(dispatch) => {
-    console.log(userEmail, userPassword);
-    dispatch({ type: LOGIN_USER });
-    auth.signInWithEmailAndPassword(userEmail, userPassword)
-    .then(
-      user => { 
-        loginUserSuccess(dispatch, user);
-      },
-      error => { 
-        console.log( error.message );        
-        loginUserFail(dispatch, error.message);
-      }
-    )
-      redirectFunction(callback);
-  }
-}
-
-
-
-
-
-
-
-
-
-/* 
-export const loginUser = ({ userEmail, userPassword }) => {
-    return (dispatch) => {
-        dispatch({ type: LOGIN_USER });
-        firebase.auth().signInWithEmailAndPassword(userEmail, userPassword)
-            .then(user => loginUserSuccess(dispatch, user))
-            .catch((error) => {
-                loginUserFail(dispatch);
-            });
-    };
-};
-
-
-
-
-export const logoutUser = () => {
-    return (dispatch) => {
-        dispatch({
-            type: LOGOUT_USER,
-            payload: {}        
-        });
-    };
-};
- */
- 

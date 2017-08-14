@@ -5,7 +5,8 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
   LOGOUT_USER,
-  SET_LOGGED_USER
+  SET_LOGGED_USER,
+  GET_LOGIN_STATE
 } from '../actions/types';
 
 
@@ -15,12 +16,15 @@ const INITIAL_STATE = {
   error: '',
   loading: false,
   loggedIn: false,
-  user: {}
 };
 
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case GET_LOGIN_STATE:
+      return { ...state, loading: true };
+    case SET_LOGGED_USER:
+      return { ...state, loggedIn: true, loading: false, user: action.payload };
     case EMAIL_CHANGED:
       return { ...state, email: action.payload };
     case PASSWORD_CHANGED:
@@ -33,8 +37,6 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, ...INITIAL_STATE, error: action.error };
     case LOGOUT_USER:
       return { ...state, ...INITIAL_STATE };
-    case SET_LOGGED_USER:
-      return { ...state, loggedIn: true, user: action.payload };
     default:
       return state;
   }

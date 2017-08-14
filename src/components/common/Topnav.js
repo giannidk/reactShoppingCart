@@ -6,9 +6,21 @@ import {
  } from 'react-bootstrap';
 import { NavItemLink } from './'
 
-class Topnav extends Component{  
-  
+class Topnav extends Component{    
     render() {
+      const { loggedIn } = this.props;
+      if(!loggedIn){
+        return(
+          <Navbar inverse collapseOnSelect fixedTop>
+              <Navbar.Header>
+                <Navbar.Brand>
+                  <LinkContainer to="/login"><a>React Auth</a></LinkContainer>
+                </Navbar.Brand>
+              </Navbar.Header>
+            </Navbar>
+        )
+      }
+
         return (
             <Navbar inverse collapseOnSelect fixedTop>
               <Navbar.Header>

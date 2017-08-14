@@ -7,8 +7,6 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 
-//import { auth } from '../firebase';
-
 class UserLogin extends Component {
 
   componentWillMount(){
@@ -27,12 +25,10 @@ class UserLogin extends Component {
 
   onSubmit() {
     const { email, password } = this.props;
-    //const from = this.props.location.state ? this.props.location.state.from.pathname : '/settings';
-    //console.log(from);
     this.props.loginUser({ email, password },
-      //() => {this.props.history.push('/dashboard');} 
-      () => {this.setState({ redirectToReferrer: true })} 
-      );
+      () => {this.setState({ redirectToReferrer: true });}
+      //() => {this.props.history.push('/dashboard');}      
+  );
   }
 
 
@@ -69,13 +65,8 @@ class UserLogin extends Component {
   }
   render() {
     const { handleSubmit, userEmail, userPassword } = this.props;
-    const { from } = this.props.location.state || { from: { pathname: '/login' } }
-    const { redirectToReferrer } = this.state
-
-    //const { currentUser } = auth;
-
-    //console.log('FROM: ', from);
-    //console.log(redirectToReferrer);
+    const { from } = this.props.location.state || { from: { pathname: '/dashboard' } }
+    const { redirectToReferrer } = this.state;
 
     if (redirectToReferrer) {
       return (
@@ -83,14 +74,10 @@ class UserLogin extends Component {
       )
     }
 
-
-
-    //const { currentUser } = firebase.auth();
     return (
       <div className="loginOuterContainer">
         <div className="loginInnerContainer col-xs-12 col-sm-8 col-md-6 col-lg-4">
           <h3>Login</h3>
-          <h5>---</h5>
           <Panel>
             {this.renderErrorAlert()}
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
@@ -140,7 +127,6 @@ function validate(values) {
 }
 
 const mapStateToProps = ({ auth }) => {
-  //console.log(auth);
   const { email, password, error, loading } = auth;
   return { email, password, error, loading };
 };
