@@ -6,10 +6,7 @@ import { Provider, connect } from  'react-redux';
 import './css/App.css';
 import './css/spinner.css';
 import { Topnav } from './components/common';
-import PrivateRoute from './routes/PrivateRoute';
-import Login from './routes/login';
-import Dashboard from './routes/dashboard';
-import Settings from './routes/settings';
+import BooksList from './routes/BooksList';
 import { setLoggedInState, getLoggedInState } from './actions';
 
 class App extends Component {
@@ -25,12 +22,12 @@ class App extends Component {
       <BrowserRouter>
         <Grid>
       <Topnav loggedIn={loggedIn} />
+      
         <Switch>
-          <PrivateRoute path="/dashboard" component={Dashboard} />
-          <PrivateRoute path="/settings" component={Settings} />
-          <Route path="/login" component={Login} />
-          <Route path="/" component={Login} />
+          <Route path="/BooksList" component={BooksList} />
+          <Route path="/" component={BooksList} />
         </Switch>
+        
         </Grid>
       </BrowserRouter>
       </Provider>

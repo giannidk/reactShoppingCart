@@ -14,9 +14,15 @@ class Topnav extends Component{
           <Navbar inverse collapseOnSelect fixedTop>
               <Navbar.Header>
                 <Navbar.Brand>
-                  <LinkContainer to="/login"><a>React Auth</a></LinkContainer>
+                  <LinkContainer to="/login"><a>React Cart</a></LinkContainer>
                 </Navbar.Brand>
+                <Navbar.Toggle />
               </Navbar.Header>
+              <Navbar.Collapse>
+                <Nav>
+                  <NavItemLink to="/BooksList" label="Books List" />
+                </Nav>
+              </Navbar.Collapse>
             </Navbar>
         )
       }
