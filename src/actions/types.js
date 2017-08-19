@@ -8,6 +8,7 @@ export const SET_LOGGED_USER = 'set_logged_user';
 export const GET_LOGIN_STATE = 'get_login_state';
 
 export const GET_BOOKS = 'get_books';
+export const POST_BOOK = 'post_book';
 export const GET_BOOKS_SUCCESS = 'get_books_success';
 export const GET_BOOKS_FAIL = 'get_books_fail';
 export const SEARCH_TERM_CHANGED = 'search_term_changed';

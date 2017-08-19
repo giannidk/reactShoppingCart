@@ -7,12 +7,12 @@ import './css/App.css';
 import './css/spinner.css';
 import { Topnav } from './components/common';
 import BooksList from './routes/BooksList';
-import { setLoggedInState, getLoggedInState } from './actions';
+//import { setLoggedInState, getLoggedInState } from './actions';
 
 class App extends Component {
   state = { loggedIn: null }
     componentWillMount(){
-     this.props.getLoggedInState();
+     //this.props.getLoggedInState();
   }   
   
   render() {
@@ -40,4 +40,4 @@ function mapStateToProps({ auth }){
   return { loading, loggedIn }
 }
 
-export default connect(mapStateToProps, { setLoggedInState, getLoggedInState })(App);
+export default connect(mapStateToProps)(App);
