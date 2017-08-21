@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Panel, Button } from 'react-bootstrap';
 
 const BookItem = ({ book, onClick }) => {

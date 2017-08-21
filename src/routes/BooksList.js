@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { Row, Col, Panel, Button } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import Cart from '../components/Cart';
 import { getBooks, addToCart } from '../actions/';

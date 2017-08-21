@@ -13,4 +13,6 @@ export const GET_BOOKS_SUCCESS = 'get_books_success';
 export const GET_BOOKS_FAIL = 'get_books_fail';
 export const SEARCH_TERM_CHANGED = 'search_term_changed';
 export const ADD_TO_CART = 'add_to_cart';
+export const REMOVE_ONE_FROM_CART = 'remove_one_from_cart';
+export const DELETE_FROM_CART = 'delete_from_cart';
 export const GET_CART = 'get_cart';

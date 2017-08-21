@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { Well, Panel, FormControl, FormGroup, ControlLabel, Button } from 'react-bootstrap';
+import { Well, FormGroup, Button } from 'react-bootstrap';
 import { postBook } from '../actions';
 
 class BooksForm extends Component {
@@ -12,12 +12,13 @@ class BooksForm extends Component {
             title: '',
             description: '',
             isbn: '',
+            _id: '',
             price: '',
         }
     }
 
     onSubmit() {
-        const book = this.state;
+        const book = {...this.state, _id: this.state.isbn};        
         this.props.postBook(book);
         this.props.reset();
     }

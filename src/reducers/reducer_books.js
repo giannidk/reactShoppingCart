@@ -12,9 +12,9 @@ const INITIAL_STATE = {
   loading: false,
   error: false,
   books:{
-    /* "001": {"_id": "001", "isbn": "12345", "title": "Ciccio book", "description": "Lore Impus ciccione dolorem. Ipsus pegasus ciccionem.", "price": "33.50"},
+     "001": {"_id": "001", "isbn": "12345", "title": "Ciccio book", "description": "Lore Impus ciccione dolorem. Ipsus pegasus ciccionem.", "price": "33.50"},
     "002": {"_id": "002", "isbn": "67890", "title": "Bombo book", "description": "Lore Impus ciccione dolorem con iuntam des parolo.", "price": "21.50"},
-    "003": {"_id": "003", "isbn": "55667", "title": "Cannoniere book", "description": "Lore Impus ciccione dolorem.", "price": "45"}, */
+    "003": {"_id": "003", "isbn": "55667", "title": "Cannoniere book", "description": "Lore Impus ciccione dolorem.", "price": "45"}, 
   }
 };
 

@@ -1,6 +1,8 @@
 import {
   GET_CART,
   ADD_TO_CART,
+  REMOVE_ONE_FROM_CART,
+  DELETE_FROM_CART,
 } from './types';
 
 
@@ -26,12 +28,34 @@ export const addToCart = (cart = {}, item) => {
     }
     console.log('QTY:', qty);
     // Add item to cart
-    updatedCart = { ...cart, [item._id]: { "title": item.title, "price": item.price, "quantity": qty }};
+    updatedCart = { ...cart, [item._id]: { ...item, "quantity": qty }};
 
       dispatch({
         type: ADD_TO_CART,
         payload: updatedCart
       });
   }
+}
+
+export const removeOneFromCart = (cart = {}, item) => {
+  cart[item._id].quantity > 1 ? cart[item._id].quantity -= 1 : cart[item._id].quantity;
+    let updatedCart = {...cart};
+  return(dispatch) => {
+    dispatch({
+      type: REMOVE_ONE_FROM_CART,
+      payload: updatedCart
+    })
+  }
+}
+
+export const deleteFromCart = (cart = {}, item) => {
+    delete cart[item._id];
+    let updatedCart = {...cart}
+    return (dispatch) => {
+      dispatch({
+        type: DELETE_FROM_CART,
+        payload: updatedCart
+      })
+    }
 }
 
