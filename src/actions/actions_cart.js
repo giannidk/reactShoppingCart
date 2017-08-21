@@ -38,8 +38,8 @@ export const addToCart = (cart = {}, item) => {
 }
 
 export const removeOneFromCart = (cart = {}, item) => {
-  cart[item._id].quantity > 1 ? cart[item._id].quantity -= 1 : cart[item._id].quantity;
-    let updatedCart = {...cart};
+  let updatedCart = {...cart};
+  updatedCart[item._id].quantity > 1 ? updatedCart[item._id].quantity -= 1 : updatedCart[item._id].quantity;
   return(dispatch) => {
     dispatch({
       type: REMOVE_ONE_FROM_CART,
@@ -49,8 +49,8 @@ export const removeOneFromCart = (cart = {}, item) => {
 }
 
 export const deleteFromCart = (cart = {}, item) => {
-    delete cart[item._id];
     let updatedCart = {...cart}
+    delete updatedCart[item._id];
     return (dispatch) => {
       dispatch({
         type: DELETE_FROM_CART,
