@@ -13,8 +13,8 @@ class BooksList extends Component {
   }
 
   addToCart(book){
-    const { cart } = this.props;
-    this.props.addToCart(cart, book);
+    const { cart, cartTotal } = this.props;
+    this.props.addToCart(cart, cartTotal, book);
   }
 
   renderList() {
@@ -58,7 +58,8 @@ const mapStateToProps = ({books, cart}) => {
   console.log(books.books);
   return { 
     booksList: books.books,
-    cart: cart.cart
+    cart: cart.cart,
+    cartTotal: cart.cartTotal,
   };
 }
 
