@@ -41,7 +41,7 @@ class Cart extends Component {
 
   renderCart() {
     const { cart } = this.props;
-    if (!cart) {
+    if (!cart || Object.keys(cart).length === 0) {
       return (<ListGroupItem className="text-info">Your cart is empty</ListGroupItem>);
     }
     return _.map(cart, (item, key) => {

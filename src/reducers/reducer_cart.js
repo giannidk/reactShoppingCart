@@ -1,9 +1,6 @@
 import { 
   GET_CART,
-  ADD_TO_CART,
-  REMOVE_ONE_FROM_CART,
-  DELETE_FROM_CART,
-  CART_TOTAL,
+  UPDATE_CART,
 } from '../actions/types';
 
 
@@ -17,11 +14,7 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) { 
-    case ADD_TO_CART:
-      return { ...state, cart: action.payload, cartTotal: action.cartTotal }; 
-    case REMOVE_ONE_FROM_CART:
-      return { ...state, cart: action.payload, cartTotal: action.cartTotal }; 
-    case DELETE_FROM_CART:
+    case UPDATE_CART:
       return { ...state, cart: action.payload, cartTotal: action.cartTotal }; 
     case GET_CART:
       return { ...state }; 

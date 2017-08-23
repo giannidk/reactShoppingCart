@@ -3,8 +3,10 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { 
   Navbar, 
   Nav,
+  NavItem
  } from 'react-bootstrap';
 import { NavItemLink } from './'
+import CartWidget from '../CartWidget'
 
 class Topnav extends Component{    
     render() {
@@ -21,6 +23,13 @@ class Topnav extends Component{
               <Navbar.Collapse>
                 <Nav>
                   <NavItemLink to="/BooksList" label="Books List" />
+                </Nav>
+                <Nav pullRight>                  
+                <LinkContainer to="/cart">
+                  <NavItem>
+                    <CartWidget />
+                  </NavItem>
+              </LinkContainer>
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
