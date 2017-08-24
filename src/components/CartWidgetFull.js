@@ -4,7 +4,7 @@ import { Row, Col, Panel, ListGroup, ListGroupItem, Button, ButtonGroup, Label, 
 import { connect } from 'react-redux';
 import { getCart, addToCart, removeOneFromCart, deleteFromCart } from '../actions';
 
-class Cart extends Component {
+class CartWidgetFull extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -97,4 +97,4 @@ const mapStateToProps = ({ cart }) => {
   return { items, cartTotal };
 }
 
-export default connect(mapStateToProps, { getCart, addToCart, removeOneFromCart, deleteFromCart })(Cart);
+export default connect(mapStateToProps, { getCart, addToCart, removeOneFromCart, deleteFromCart })(CartWidgetFull);

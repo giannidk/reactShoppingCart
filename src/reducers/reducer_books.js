@@ -15,6 +15,8 @@ const INITIAL_STATE = {
      "001": {"_id": "001", "isbn": "12345", "title": "Ciccio book", "description": "Lore Impus ciccione dolorem. Ipsus pegasus ciccionem.", "price": "33.50"},
     "002": {"_id": "002", "isbn": "67890", "title": "Bombo book", "description": "Lore Impus ciccione dolorem con iuntam des parolo.", "price": "21.50"},
     "003": {"_id": "003", "isbn": "55667", "title": "Cannoniere book", "description": "Lore Impus ciccione dolorem.", "price": "45"}, 
+    "1234-5678": {"_id": "1234-5678", "isbn": "1234-5678", "title": "My Little book", "description": "Lore Impus ciccione dolorem.", "price": "25"}, 
+    "AB356-IS42": {"_id": "AB356-IS42", "isbn": "AB356-IS42", "title": "Javascript, the weird parts", "description": "Lore Impus ciccione dolorem.", "price": "78"}, 
   }
 };
 

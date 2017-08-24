@@ -5,12 +5,11 @@ import {
   Nav,
   NavItem
  } from 'react-bootstrap';
-import { NavItemLink } from './'
-import CartWidget from '../CartWidget'
+import { NavItemLink, CartWidgetMini } from './'
 
 class Topnav extends Component{    
     render() {
-      const { loggedIn } = this.props;
+      const { loggedIn, items } = this.props;
       if(!loggedIn){
         return(
           <Navbar inverse collapseOnSelect fixedTop>
@@ -27,7 +26,7 @@ class Topnav extends Component{
                 <Nav pullRight>                  
                 <LinkContainer to="/cart">
                   <NavItem>
-                    <CartWidget />
+                    <CartWidgetMini items={items} />
                   </NavItem>
               </LinkContainer>
                 </Nav>

@@ -7,24 +7,28 @@ import './css/App.css';
 import './css/spinner.css';
 import { Topnav } from './components/common';
 import BooksList from './routes/BooksList';
+import Cart from './routes/Cart';
 //import { setLoggedInState, getLoggedInState } from './actions';
+import { getCart } from './actions';
 
 class App extends Component {
   state = { loggedIn: null }
     componentWillMount(){
      //this.props.getLoggedInState();
+     this.props.getCart();
   }   
   
   render() {
-    const { store, loggedIn } = this.props;
+    const { store, loggedIn, items } = this.props;
     return (
       <Provider store={store}>
       <BrowserRouter>
         <Grid>
-      <Topnav loggedIn={loggedIn} />
+      <Topnav loggedIn={loggedIn} items={items} />
       
         <Switch>
-          <Route path="/BooksList" component={BooksList} />
+          <Route path="/booksList" component={BooksList} />
+          <Route path="/cart" component={Cart} />
           <Route path="/" component={BooksList} />
         </Switch>
         
@@ -37,7 +41,8 @@ class App extends Component {
 
 function mapStateToProps({ auth, cart }){
   const { loading, loggedIn } = auth;
-  return { loading, loggedIn }
+  const { items } = cart;
+  return { loading, loggedIn, items }
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, { getCart })(App);

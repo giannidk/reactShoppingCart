@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import Cart from '../components/Cart';
+import CartWidgetFull from '../components/CartWidgetFull';
 import { getBooks, addToCart } from '../actions/';
 import BookItem from '../components/BookItem';
 import BooksForm from '../components/BooksForm';
@@ -21,7 +21,7 @@ class BooksList extends Component {
     const { booksList } = this.props;
     return _.map(booksList, (book, key) => {
       return (  
-          <Col key={key} xs={12} sm={6} md={4}>    
+          <Col key={key} xs={12} sm={6} md={4}  style={{'padding': '4px'}}>    
         <BookItem book={book} onClick={this.addToCart.bind(this, book)} />
         </Col>
       );
@@ -36,17 +36,15 @@ class BooksList extends Component {
     }
 
     return (
-      <div>
-        <Row>
-        <Col xs={12}>
-            <Cart />
-        </Col>
-        </Row>
+      <div>       
         <Row>  
-          <Col xs={12} sm={6} md={4}>
+          <Col xs={12} sm={9} md={9}>
+            {this.renderList()}
+          </Col>        
+          <Col xs={12} sm={3} md={3}>
+            <CartWidgetFull />
           <BooksForm />
           </Col>        
-            {this.renderList()}
       </Row>
       </div>
     );
