@@ -21,7 +21,8 @@ class Topnav extends Component{
               </Navbar.Header>
               <Navbar.Collapse>
                 <Nav>
-                  <NavItemLink to="/BooksList" label="Books List" />
+                  <NavItemLink to="/booksList" label="Books List" />
+                  <NavItemLink to="/booksAdd" label="Books Add" />
                 </Nav>
                 <Nav pullRight>                  
                 <LinkContainer to="/cart">

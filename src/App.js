@@ -7,6 +7,7 @@ import './css/App.css';
 import './css/spinner.css';
 import { Topnav } from './components/common';
 import BooksList from './routes/BooksList';
+import BooksAdd from './routes/BooksAdd';
 import Cart from './routes/Cart';
 //import { setLoggedInState, getLoggedInState } from './actions';
 import { getCart } from './actions';
@@ -28,6 +29,7 @@ class App extends Component {
       
         <Switch>
           <Route path="/booksList" component={BooksList} />
+          <Route path="/booksAdd" component={BooksAdd} />
           <Route path="/cart" component={Cart} />
           <Route path="/" component={BooksList} />
         </Switch>

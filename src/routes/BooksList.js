@@ -21,7 +21,7 @@ class BooksList extends Component {
     const { booksList } = this.props;
     return _.map(booksList, (book, key) => {
       return (  
-          <Col key={key} xs={12} sm={6} md={4}  style={{'padding': '4px'}}>    
+          <Col key={key} xs={12} sm={6} md={4}  style={{'padding': '0 4px'}}>    
         <BookItem book={book} onClick={this.addToCart.bind(this, book)} />
         </Col>
       );
