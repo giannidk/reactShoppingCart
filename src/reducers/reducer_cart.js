@@ -15,7 +15,9 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) { 
     case UPDATE_CART:
-      return { ...state, cart: action.payload, cartTotal: action.cartTotal }; 
+      return { ...state, items: action.payload, cartTotal: action.cartTotal }; 
+    /* case UPDATE_CART:
+      return { ...state, cart: action.payload, cartTotal: action.cartTotal };  */
     case GET_CART:
       return { ...state }; 
     default:

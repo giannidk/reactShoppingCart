@@ -8,9 +8,9 @@ class CartWidget extends Component {
         this.props.getCart();
     }
     renderAmount() {
-        const { cart } = this.props;
-        if (cart) {
-            return (Object.keys(cart).length);
+        const { items } = this.props;
+        if (items) {
+            return (Object.keys(items).length);
         }
         return 0;
     }
@@ -23,9 +23,8 @@ class CartWidget extends Component {
 }
 
 const mapStateToProps = ({ cart }) => {
-    return {
-        cart: cart.cart
-    }
+    const { items } = cart;
+    return { items };
 }
 
 export default connect(mapStateToProps, { getCart })(CartWidget);

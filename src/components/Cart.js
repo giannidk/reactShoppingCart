@@ -24,27 +24,27 @@ class Cart extends Component {
   }
 
   addToCart(item) {
-    const { cart, cartTotal } = this.props;
-  console.log(cart, cartTotal);
+    const { items, cartTotal } = this.props;
+  console.log(items, cartTotal);
   
-    this.props.addToCart(cart, cartTotal, item);
+    this.props.addToCart(items, cartTotal, item);
   }
 
   deleteFromCart(item) {
-    const { cart } = this.props;
-    this.props.deleteFromCart(cart, item);
+    const { items } = this.props;
+    this.props.deleteFromCart(items, item);
   }
   removeOneFromCart(item) {
-    const { cart } = this.props;
-    this.props.removeOneFromCart(cart, item);
+    const { items } = this.props;
+    this.props.removeOneFromCart(items, item);
   }
 
   renderCart() {
-    const { cart } = this.props;
-    if (!cart || Object.keys(cart).length === 0) {
+    const { items } = this.props;
+    if (!items || Object.keys(items).length === 0) {
       return (<ListGroupItem className="text-info">Your cart is empty</ListGroupItem>);
     }
-    return _.map(cart, (item, key) => {
+    return _.map(items, (item, key) => {
       return (
         <ListGroupItem key={key}>{item.title}
           <br />Price (Per Unit): {item.price}
@@ -93,10 +93,8 @@ class Cart extends Component {
 }
 
 const mapStateToProps = ({ cart }) => {
-  return {
-    cart: cart.cart,
-    cartTotal: cart.cartTotal
-  };
+  const { items, cartTotal } = cart;
+  return { items, cartTotal };
 }
 
 export default connect(mapStateToProps, { getCart, addToCart, removeOneFromCart, deleteFromCart })(Cart);
