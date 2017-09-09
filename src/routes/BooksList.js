@@ -8,8 +8,17 @@ import BookItem from '../components/BookItem';
 import BooksForm from '../components/BooksForm';
 
 class BooksList extends Component {
+
+  state = {users: []}
+
   componentWillMount() {  
     this.props.getBooks();
+  }
+
+  componentDidMount() {
+    fetch('/users')
+      .then(res => res.json())
+      .then(users => this.setState({ users }));
   }
 
   addToCart(book){
@@ -45,6 +54,12 @@ class BooksList extends Component {
             <CartWidgetFull />
           <BooksForm />
           </Col>        
+      </Row>
+      <Row>
+      <h1>Users</h1>
+        {this.state.users.map(user =>
+          <div key={user.id}>{user.username}</div>
+        )}
       </Row>
       </div>
     );
